@@ -14,10 +14,24 @@ return context
 
 export const GlobalProvider = ({children}) => {
 
-const [state, dispatch] = useReducer(AppReducer, initialState)
+const [state, dispatch] = useReducer(AppReducer, initialState);
+
+const addTransaction = (transactions) => {
+    dispatch({
+        type: "ADD_TRANSACTION",
+        payload: transactions
+    })
+};
+
+const deleteTransaction = (id) => {
+    dispatch({
+        type: "DELETE_TRANSACTION",
+        payload: id
+    })
+};
 
     return (
-            <Context.Provider value={{ transactions: state.transactions}}>
+            <Context.Provider value={{ transactions: state.transactions, addTransaction, deleteTransaction}}>
                 {children}
             </Context.Provider>
     )
