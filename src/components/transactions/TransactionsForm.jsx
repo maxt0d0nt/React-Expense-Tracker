@@ -11,7 +11,7 @@ const onSubmit = (e) => {
   addTransaction({
     id: window.crypto.randomUUID(),
     description,
-    amount
+    amount: +amount,
   }
 
   )
