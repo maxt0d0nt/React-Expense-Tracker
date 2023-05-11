@@ -1,20 +1,19 @@
-
-import { useGlobalState } from '../context/GlobalState'
+import { useGlobalState } from "../context/GlobalState";
 
 function Balance() {
+  const { transactions } = useGlobalState();
 
-const { transactions}= useGlobalState();
+  const amount = transactions.map((transaction) => transaction.amount);
+  const total = amount.reduce((acc, item) => (acc += item), 0);
 
-const amount = transactions.map(transaction => transaction.amount)
-const total = amount.reduce((acc, item) => (acc += item), 0) 
-
-return (
+  return (
     <>
-    <h3>Your Balance</h3>
-    <h1>${total}</h1>
-    
+      <div className="flex justify-between">
+        <h3>Your Balance</h3>
+        <h1 className="text-2xl font-bold">${total}</h1>
+      </div>
     </>
-  )
+  );
 }
 
-export default Balance
+export default Balance;
